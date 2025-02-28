@@ -1,0 +1,32 @@
+/* src/styles/map.css */
+
+.marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .marker.mountain {
+    background-color: #6B7280;
+    border: 2px solid white;
+  }
+  
+  .marker.town {
+    background-color: #10B981;
+    border: 2px solid white;
+  }
+  
+  .marker.accommodation {
+    background-color: #EF4444;
+    border: 2px solid white;
+  }
+  
+  .mapboxgl-popup {
+    max-width: 200px;
+  }
+  
+  .mapboxgl-popup-content {
+    padding: 12px;
+    border-radius: 6px;
+  }
