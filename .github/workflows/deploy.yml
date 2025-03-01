@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Setup Node.js 🔧
@@ -19,7 +19,7 @@ jobs:
           node-version: '18'
           cache: 'npm'
           
-      - name: Install dependencies 📦
+      - name: Install dependencies
         run: npm ci
         
       - name: Debug - Check environment
@@ -29,7 +29,7 @@ jobs:
           echo "Current directory: $(pwd)"
           echo "Directory listing: $(ls -la)"
           
-      - name: Build 🏗️
+      - name: Build
         run: npm run build
         env:
           REACT_APP_MAPBOX_TOKEN: ${{ secrets.REACT_APP_MAPBOX_TOKEN }}
@@ -41,12 +41,13 @@ jobs:
           echo "Build directory listing: $(ls -la build)"
           
       # Create a .nojekyll file to prevent GitHub from using Jekyll
-      - name: Add .nojekyll file 📄
+      - name: Create .nojekyll file
         run: touch build/.nojekyll
           
-      - name: Deploy 🚀
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build
+          folder: out
           branch: gh-pages
           clean: true
+          token: ${{ secrets.GITHUB_TOKEN }} # Use the automatic token
