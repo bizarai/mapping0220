@@ -2,8 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/map.css';
-import './styles/main.css';
+import './styles/main.css'; // This now imports map.css
 import App from './App';
 
 // This ensures we get the correct root element
