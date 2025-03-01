@@ -6,11 +6,16 @@ import './styles/map.css';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4">三江并流地区地图</h1>
+    <div className="app-container">
+      <header className="app-header">
+        <h1>三江并流地区地图 (Three Rivers Map)</h1>
+      </header>
+      <main>
         <ThreeRiversMap />
-      </div>
+      </main>
+      <footer className="app-footer">
+        <p>© 2025 Three Rivers Mapping Project</p>
+      </footer>
     </div>
   );
 }
