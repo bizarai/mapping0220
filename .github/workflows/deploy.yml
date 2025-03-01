@@ -22,11 +22,8 @@ jobs:
       - name: Install dependencies 📦
         run: npm ci
         
-      - name: Check for package.json
-        run: ls -la && cat package.json
-        
       - name: Build 🏗️
-        run: npm run build --verbose
+        run: npm run build
         env:
           REACT_APP_MAPBOX_TOKEN: ${{ secrets.REACT_APP_MAPBOX_TOKEN }}
           
