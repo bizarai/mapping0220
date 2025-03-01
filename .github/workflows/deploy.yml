@@ -26,9 +26,15 @@ jobs:
         run: npm run build
         env:
           REACT_APP_MAPBOX_TOKEN: ${{ secrets.REACT_APP_MAPBOX_TOKEN }}
+          PUBLIC_URL: "https://bizarai.github.io/mapping0220"
+          
+      # Create a .nojekyll file to prevent GitHub from using Jekyll
+      - name: Add .nojekyll file 📄
+        run: touch build/.nojekyll
           
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
           branch: gh-pages
+          clean: true
