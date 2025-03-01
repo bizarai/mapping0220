@@ -117,9 +117,14 @@ const ThreeRiversMap: React.FC = () => {
     if (map.current) return;
 
     try {
-      // Use a public token for demo purposes
-      // In production, you should use your own token stored in .env file
-      const token = 'pk.eyJ1IjoiZXhhbXBsZXVzZXIiLCJhIjoiY2tocXhkamViMGpzeDJ4bWZtcnIxcDhhcCJ9.aGZ-9PZDAkbgFbDAaP3zKw';
+      // Use environment variable for Mapbox token
+      // In production, this will use the token from GitHub secrets
+      const token = process.env.REACT_APP_MAPBOX_TOKEN || '';
+      
+      if (!token) {
+        setError('Mapbox token is missing. Please set REACT_APP_MAPBOX_TOKEN environment variable.');
+        return;
+      }
       
       mapboxgl.accessToken = token;
       
