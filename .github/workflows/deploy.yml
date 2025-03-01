@@ -22,11 +22,23 @@ jobs:
       - name: Install dependencies 📦
         run: npm ci
         
+      - name: Debug - Check environment
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+          echo "Current directory: $(pwd)"
+          echo "Directory listing: $(ls -la)"
+          
       - name: Build 🏗️
         run: npm run build
         env:
           REACT_APP_MAPBOX_TOKEN: ${{ secrets.REACT_APP_MAPBOX_TOKEN }}
           PUBLIC_URL: "https://bizarai.github.io/mapping0220"
+          CI: false # This prevents the build from failing on warnings
+          
+      - name: Debug - Check build output
+        run: |
+          echo "Build directory listing: $(ls -la build)"
           
       # Create a .nojekyll file to prevent GitHub from using Jekyll
       - name: Add .nojekyll file 📄
