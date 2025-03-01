@@ -24,6 +24,7 @@ const ThreeRiversMap: React.FC = () => {
   const map = useRef<mapboxgl.Map | null>(null);
   const [error, setError] = useState<string>('');
   const [mapLoaded, setMapLoaded] = useState<boolean>(false);
+  const [isTokenMissing, setIsTokenMissing] = useState<boolean>(false);
 
   // Points of interest data - expanded with more realistic data
   const points: Point[] = [
@@ -122,6 +123,7 @@ const ThreeRiversMap: React.FC = () => {
       const token = process.env.REACT_APP_MAPBOX_TOKEN || '';
       
       if (!token) {
+        setIsTokenMissing(true);
         setError('Mapbox token is missing. Please set REACT_APP_MAPBOX_TOKEN environment variable.');
         return;
       }
@@ -223,6 +225,13 @@ const ThreeRiversMap: React.FC = () => {
             .addTo(map.current);
         });
       });
+
+      // Error handling for map load
+      map.current.on('error', (e) => {
+        console.error('Mapbox error:', e);
+        setError(`Map error: ${e.error?.message || 'Unknown error'}`);
+      });
+
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to initialize map');
       console.error('Map initialization error:', err);
@@ -237,8 +246,31 @@ const ThreeRiversMap: React.FC = () => {
     };
   }, []);
 
-  // Handle errors
-  if (error) {
+  // Show a static map fallback for token issues
+  if (isTokenMissing) {
+    return (
+      <div className="map-container">
+        <div className="map-error">
+          <h3>MapBox Token Missing</h3>
+          <p>The Mapbox token is required to display the interactive map.</p>
+          <p>For developers: Create a .env.local file with your REACT_APP_MAPBOX_TOKEN.</p>
+        </div>
+        <div className="static-map-fallback">
+          <h3>三江并流地区 (Three Rivers Region)</h3>
+          <p>This area in Yunnan province, China features three major rivers flowing in parallel:</p>
+          <ul>
+            <li>澜沧江 (Lancang River/Mekong)</li>
+            <li>怒江 (Nu River/Salween)</li>
+            <li>金沙江 (Jinsha River/Upper Yangtze)</li>
+          </ul>
+          <p>The region is known for its dramatic topography, biodiversity, and cultural significance.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle general errors
+  if (error && !isTokenMissing) {
     return (
       <div className="map-error">
         <h3>Map Error</h3>
