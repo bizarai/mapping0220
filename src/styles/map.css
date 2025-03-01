@@ -1,32 +1,157 @@
 /* src/styles/map.css */
 
+/* Marker styles */
 .marker {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .marker.mountain {
-    background-color: #6B7280;
-    border: 2px solid white;
-  }
-  
-  .marker.town {
-    background-color: #10B981;
-    border: 2px solid white;
-  }
-  
-  .marker.accommodation {
-    background-color: #EF4444;
-    border: 2px solid white;
-  }
-  
-  .mapboxgl-popup {
-    max-width: 200px;
-  }
-  
-  .mapboxgl-popup-content {
-    padding: 12px;
-    border-radius: 6px;
-  }
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.marker:hover {
+  transform: scale(1.2);
+}
+
+.marker.mountain {
+  background-color: #6B7280;
+  border: 3px solid white;
+}
+
+.marker.town {
+  background-color: #10B981;
+  border: 3px solid white;
+}
+
+.marker.accommodation {
+  background-color: #EF4444;
+  border: 3px solid white;
+}
+
+/* Popup styles */
+.mapboxgl-popup {
+  max-width: 260px;
+}
+
+.mapboxgl-popup-content {
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.popup-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #1F2937;
+}
+
+.popup-elevation {
+  font-size: 14px;
+  margin: 4px 0;
+  color: #4B5563;
+}
+
+.popup-description {
+  font-size: 14px;
+  margin: 8px 0 0 0;
+  color: #374151;
+  line-height: 1.4;
+}
+
+/* Legend styles */
+.map-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+.map-display {
+  width: 100%;
+  height: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.map-legend {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.legend-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 12px 0;
+  color: #1F2937;
+}
+
+.legend-section {
+  margin-bottom: 16px;
+}
+
+.legend-section h4 {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  color: #374151;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 6px;
+  border-radius: 2px;
+}
+
+.legend-marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.legend-marker.mountain {
+  background-color: #6B7280;
+  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.legend-marker.town {
+  background-color: #10B981;
+  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.legend-marker.accommodation {
+  background-color: #EF4444;
+  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.legend-label {
+  font-size: 14px;
+  color: #4B5563;
+}
+
+/* Error display */
+.map-error {
+  padding: 16px;
+  background-color: #FEF2F2;
+  border: 1px solid #F87171;
+  border-radius: 8px;
+  color: #B91C1C;
+}
