@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ThreeRiversMap from './components/ThreeRiversMap';
-import './styles/map.css';
+// No need to import map.css here, it's imported via main.css
 
 function App() {
   return (
