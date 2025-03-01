@@ -2,6 +2,7 @@
   "name": "mapping0220",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://bizarai.github.io/mapping0220",
   "dependencies": {
     "@types/mapbox-gl": "^2.7.19",
     "@types/node": "^16.18.0",
@@ -21,7 +22,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://bizarai.github.io/mapping0220",
   "eslintConfig": {
     "extends": [
       "react-app",
